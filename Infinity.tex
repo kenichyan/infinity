@@ -1,0 +1,131 @@
+\documentclass[a4paper,12pt,fleqn]{ltjsarticle}
+\usepackage{amsmath,amssymb}
+\usepackage{makeidx}
+
+\linespread{1.0}
+\setlength{\parindent}{1em}
+\setlength{\mathindent}{0.5em}
+
+\makeindex
+
+\begin{document}
+
+\title{$1+2+3+4+\dots=-\frac{1}{12}$}
+\author{安田　健一}
+\date{\today}
+
+\maketitle
+
+\newpage
+
+\section{$1+2+3+4+\dots=?$}
+$1+2+3+4+\dots$と無限に足していった答えはなにになるでしょうか？
+普通に考えれば、$\infty$に発散すると考えるのが当たり前でしょう。
+ところが、ある特別な計算方法を使うと、これが$-\frac{1}{12}$という不思議な値になります。
+
+\section{計算方法}
+
+\subsection{前準備}
+まず、
+\begin{equation}
+    \label{S-open}
+    S = 1 + 2x + 3x^2 + 4x^3 + \dots
+\end{equation}
+とおく。
+
+これに$x$をかけて、$S$から引くと、
+
+\begin{tabular}{rrrrrrrrrrrr}
+           &$S$  & $=$ & $1$ & $+$ & $2x$ & $+$ & $3x^2$ & $+$ & $4x^3$ & $+$ & $\dots$ \\
+       $-)$&$xS$ & $=$ &     &     & $x$  & $+$ & $2x^2$ & $+$ & $3x^3$ & $+$ &$\dots$ \\ \hline
+       &$(1-x)S$ & $=$ & $1$ & $+$ & $x$  & $+$ & $x^2$  & $+$ & $x^3$  & $+$ &$\dots$
+\end{tabular}
+
+さらに、これに$x$をかけて、$(1-x)S$から引くと、
+
+\begin{tabular}{rrrrrrrrrrrr}
+     &$(1-x)S$ & $=$ & $1$ & $+$ & $x$ & $+$ & $x^2$ & $+$ & $x^3$ & $+$ & $\dots$ \\
+$-)$&$x(1-x)S$ & $=$ &     &     & $x$ & $+$ & $x^2$ & $+$ & $x^3$ & $+$ &$\dots$ \\ \hline
+   &$(1-x)^2S$ & $=$ & $1$ &     &     &     &       &     &       &     &
+\end{tabular}
+
+したがって、
+\begin{equation}
+    \label{S-closed}
+    S = \frac{1}{(1-x)^2}
+\end{equation}
+
+となる。
+
+ここで(\ref{S-open})(\ref{S-closed})に、それぞれ$x = -1$を代入すると、
+\begin{equation}
+    \label{S-ans}
+    S = 1 -2 + 3 - 4 + 5 - 6 + 7 - 8 + \dots = \frac{1}{4}
+\end{equation}
+
+を得る。
+
+\subsection{本丸}
+つぎに、
+\begin{equation}
+    \label{T-open}
+    T = 1 + 2 + 3 + 4 + 5 + 6 + \dots
+\end{equation}
+とおくと、
+\begin{align*}
+    T &= 1 + 2 + 3 + 4 + 5 + 6 + \dots \\
+      &= (1-2+3-4+5-6+7-8+\dots) + 2\times(2+4+6+8+10+\dots) \\
+      &= (1-2+3-4+5-6+7-8+\dots) + 4\times(1+2+3+4+5+\dots) \\
+      &= S + 4T
+      \because (\ref{S-ans})(\ref{T-open})
+\end{align*}
+と書き換えることができる。
+
+ここで、前準備の(\ref{S-ans})より、$S=\frac{1}{4}$であるから、
+\begin{align*}
+    T  &= \frac{1}{4} + 4T \\
+    3T &= -\frac{1}{4} \\
+    T &= -\frac{1}{12} \\
+\end{align*}
+となる。
+
+ここで、(\ref{T-open})より、$T = 1 + 2 + 3 + 4 + \dots$であるから、
+\begin{equation*}
+    1 + 2 + 3 + 4 + \dots = -\frac{1}{12}
+\end{equation*}
+を得る。
+
+\begin{flushright}
+  Q.E.D
+\end{flushright}
+
+\newpage
+
+\section{参考}
+これは数学的には、リーマンのゼータ関数を解析接続によって負数の領域に拡張したものと考えることができます。
+
+リーマンのゼータ関数とは
+\begin{equation*}
+    \zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}
+\end{equation*}
+のように定義された関数です。
+
+ここで$s=-1$のとき、
+\begin{equation*}
+  \zeta(-1) = \sum_{n=1}^\infty \frac{1}{n^{-1}} = \sum_{n=1}^\infty n = 1+2+3+4+\dots = -\frac{1}{12}
+\end{equation*}
+となります。
+
+\section{注意}
+この理論は高校数学のレベルを遥かに超えているので、高校のテストでは良い子は素直に
+\begin{equation*}
+  \sum_{n=1}^\infty n = \infty
+\end{equation*}
+と答えましょう！
+
+\vfill
+
+\begin{flushright}
+    Powered by \LaTeX
+\end{flushright}
+\end{document}
