@@ -1,23 +1,21 @@
 FILENAME  = Infinity
 TEX       = $(FILENAME).tex
 IDX       = $(FILENAME).idx
-DVI       = $(FILENAME).dvi
 PDF       = $(FILENAME).pdf
 PDFOUT    = $(FILENAME)_enc.pdf
-all:
-	make tex
-	make tex
-	make idx
-	make tex
-	make pw
-distclean:
-	rm $(PDFOUT)
-	make clean
-clean:
-	rm *.aux *.idx *.ilg *.ind *.log  *.toc *.out $(PDF)
-tex:
+
+all: $(PDFOUT)
+
+$(PDF): $(TEX)
 	lualatex $(TEX)
-idx:
 	makeindex $(IDX)
-pw:
+	lualatex $(TEX)
+
+$(PDFOUT): $(PDF)
 	pdftk $(PDF) output $(PDFOUT) owner_pw PROMPT
+
+clean:
+	rm -f *.aux *.idx *.ilg *.ind *.log *.toc *.out $(PDF)
+
+distclean: clean
+	rm -f $(PDFOUT)
